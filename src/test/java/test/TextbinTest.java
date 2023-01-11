@@ -1,6 +1,5 @@
 package test;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,20 +26,19 @@ public class TextbinTest {
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         driver.manage().window().maximize();
-        driver.get("https://textbin.net/");
     }
 
     @Test (description = "Checking if website is opened", priority = 1)
     public void WebsiteOpenTest() {
+        mainPage.openPage();
         fluentWait.until(ExpectedConditions.visibilityOf(mainPage.getNewPasteTitle()));
-        //assertEquals(mainPage.getPageUrl(), "https://textbin.net/");
-        assertEquals(driver.getCurrentUrl(), "https://textbin.net/");
-        assertEquals(driver.getTitle(), "TextBin");
-        //assertEquals(mainPage.getPageTitle(), "TextBin");
+        assertEquals(mainPage.getPageUrl(), "https://textbin.net/");
+        assertEquals(mainPage.getPageTitle(), "TextBin");
     }
 
     @Test (description = "Creating a new paste", priority = 2)
     public void CreateNewPaste() throws InterruptedException {
+        mainPage.openPage();
         fluentWait.until(ExpectedConditions.visibilityOf(mainPage.getIAgreeBtn()));
         mainPage.closeCookiesPopUp();
         mainPage.pasteTextContent();

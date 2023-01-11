@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.Select;
 public class MainPage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://textbin.net/";
-    private WebDriver driver;
 
     @FindBy(xpath = "//span[text()='New Paste ']")
     private WebElement newPasteTitle;
@@ -49,6 +48,10 @@ public class MainPage extends AbstractPage {
 
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    public void openPage() {
+        driver.get("https://textbin.net/");
     }
 
     public void closeCookiesPopUp() {
